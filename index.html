@@ -16,12 +16,12 @@
 
 <body>
     <div class="container">
-        <header class="text-center p-5 bg-secondary text-white mb-4">
+        <header class="text-center p-5 bg-secondary text-white mb-3">
            <h1>Anytime is Train Time</h1>
             <p>Choo Choo. Chee Chee.</p>
         </header>
 
-        <div class="row bg-primary text-white rounded-top mx-auto pl-2 py-1">Current Train Schedule</div>
+        <div class="row bg-primary text-white rounded-top mx-auto pl-2 py-1 font-weight-bold">Current Train Schedule</div>
         <table class="table table-hover border border-primary">
             <thead class="thead-dark">
                 <tr>
@@ -44,8 +44,26 @@
             </tbody>
         </table>
 
-
-
+        <div class="row bg-primary text-white rounded-top mx-auto pl-2 py-1 font-weight-bold">Add Train</div>
+        <form class="border border-primary p-2 pt-3 mb-3">
+            <div class="form-group">
+                <label for="train-name">Train Name</label>
+                <input type="text" class="form-control" id="trainNameInput" aria-describedby="trainHelp">
+            </div>
+            <div class="form-group">
+                <label for="destination-name">Destination</label>
+                <input type="text" class="form-control" id="destinationInput" aria-describedby="destinationHelp">
+            </div>
+            <div class="form-group">
+                <label for="first-train-time">First Train Time</label>
+                <input type="time" class="form-control" id="firstTrainInput" aria-describedby="firstTrainHelp">
+            </div>
+            <div class="form-group">
+                <label for="frequency">Frequency (min)</label>
+                <input type="number" class="form-control" id="frequencyInput" aria-describedby="frequencyHelp">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 
 
 
