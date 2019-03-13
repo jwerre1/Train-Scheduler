@@ -12,14 +12,18 @@
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+
+    <!-- Moment.js Reference -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <header class="text-center p-5 bg-secondary text-white mb-3">
-           <h1>Anytime is Train Time</h1>
-            <p>Choo Choo. Chee Chee.</p>
-        </header>
+
+        <div class="jumbotron text-center p-5 bg-secondary text-white mb-3">
+            <h1 class="display-4">Anytime is Train Time</h1>
+            <p class="lead">Choo Choo. Chee Chee.</p>
+        </div>
 
         <div class="row bg-primary text-white rounded-top mx-auto pl-2 py-1 font-weight-bold">Current Train Schedule</div>
         <table class="table table-hover border border-primary">
@@ -35,11 +39,6 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Midnight Train</td>
-                    <td>Georgia</td>
-                    <td>300</td>
-                    <td>00:00</td>
-                    <td>60</td>
                 </tr>
             </tbody>
         </table>
@@ -62,7 +61,7 @@
                 <label for="frequency">Frequency (min)</label>
                 <input type="number" class="form-control" id="frequencyInput" aria-describedby="frequencyHelp">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id="add-train-btn">Submit</button>
         </form>
 
 
