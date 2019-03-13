@@ -90,10 +90,13 @@ database.ref().on("child_added", function(snapshot) {
 
   let tRow = $("<tr>");
 
+  // converts time of next train into hh:mm a
+  var nextArrivalAMPM = moment(nextArrival, "HH:mm").format('LT');
+
   let nameID = $("<td>").text(sv.name);
   let destinationID = $("<td>").text(sv.destination);
   let frequencyID = $("<td>").text(sv.frequency);
-  let nextArrivalID = $("<td>").text(nextArrival);
+  let nextArrivalID = $("<td>").text(nextArrivalAMPM);
   let minutesAwayID = $("<td>").text(diffMinutes);
 
   // Append the td elements to the new table row
