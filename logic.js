@@ -17,6 +17,8 @@
   var frequency;
   var nextArrival;
   var now = moment().format("HH:mm");
+  var diffMinutes;
+  // var todayDate = moment().format("MMMM Do YYYY")
   console.log(now);
 
 
@@ -48,30 +50,51 @@ database.ref().on("child_added", function(snapshot) {
   console.log(sv.firstTrain);
   console.log(sv.frequency);
   
+  // var trainBase = moment(todayDate + " " + sv.firstTrain).format("MMMM Do YYYY, HH:mm");
+  // console.log(trainBase);          
 
-            
-            //moment.js
+
+
+
+            nextArrival = sv.firstTrain;
+            var difference = moment.utc(moment(nextArrival, "HH:mm").diff(moment(now, "HH:mm"))).format("HH:mm")
+            console.log(difference);
+            var diffMinutes = moment.duration(difference).as('minutes')
+            console.log(diffMinutes);
+
+            // var hhmmFrequency = moment(sv.frequency).format("HH:mm");
+            // console.log(hhmmFrequency);
+
+
+            // nextArrival = moment(sv.firstTrain, "HH:mm").add(sv.frequency, 'minutes').format('HH:mm');
+            // console.log(nextArrival);
+
             function findNext() {
-                nextArrival = moment(nextArrival, "HH:mm").add(sv.frequency, 'minutes').format('HH:mm');
-                console.log(nextArrival);
+              nextArrival = moment(nextArrival, "HH:mm").add(sv.frequency, 'm').format('HH:mm');
+              difference = moment.utc(moment(nextArrival, "HH:mm").diff(moment(now, "HH:mm"))).format("HH:mm")
+              diffMinutes = moment.duration(difference).as('minutes')
+              console.log(nextArrival);
+              console.log(difference);
+              console.log(diffMinutes);
+
+              if (diffMinutes > sv.frequency) {
+                findNext();
+             }
+
             }
 
-            nextArrival = moment(sv.firstTrain, "HH:mm").add(sv.frequency, 'minutes').format('HH:mm');
-            console.log(nextArrival);
-
-            findNext();
-
-            // if (nextArrival.diff(now) < 0) {
-            //    findNext();
-            // }
+        
+            if (diffMinutes > sv.frequency) {
+               findNext();
+            }
 
   let tRow = $("<tr>");
 
   let nameID = $("<td>").text(sv.name);
   let destinationID = $("<td>").text(sv.destination);
   let frequencyID = $("<td>").text(sv.frequency);
-  let nextArrivalID = $("<td>").text("");
-  let minutesAwayID = $("<td>").text("");
+  let nextArrivalID = $("<td>").text(nextArrival);
+  let minutesAwayID = $("<td>").text(diffMinutes);
 
   // Append the td elements to the new table row
   tRow.append(nameID, destinationID, frequencyID, nextArrivalID, minutesAwayID);
